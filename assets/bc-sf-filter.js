@@ -38,7 +38,8 @@ var bcSfFilterTemplate = {
     'pageItemSelectedHtml': '<li><span class="active">{{itemTitle}}</span></li>',
     'pageItemRemainHtml': '<li><span>{{itemTitle}}</span></li>',
     'paginateHtml': '<ul class="pagination-custom">{{previous}}{{pageItems}}{{next}}</ul>',
-  
+
+
     // Sorting Template
     'sortingHtml': '<label class="label--hidden">' + bcSfFilterConfig.label.sorting + '</label><select class="collection-sort__input">{{sortingItems}}</select>',
 };
