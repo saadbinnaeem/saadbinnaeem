@@ -1,0 +1,47 @@
+.checkout-loyalty-points{
+    display: inline-block;
+}
+
+.checkout-loyalty-points .title{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.checkout-loyalty-points .rewardField{
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: left;
+}
+.checkout-loyalty-points .label{
+    width: 97px;
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    padding-right: 5px;
+}
+.checkout-loyalty-points .points{
+    width: 130px;
+    float: right;
+}
+.rewardSubmit{
+
+}
+.loader{
+    display: none;
+}
+.cartDiscount,.loyalty-cart-total{
+   padding-left: 55px;
+    min-width: 150px;
+    display: inline-block;
+}
+.checkout-loyalty-points{
+    display: none;
+}
+.cancelReward{
+    display: none;
+}
+.warning{
+    color:red;
+}
+
+

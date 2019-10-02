@@ -1,0 +1,35 @@
+
+
+
+<div class="discountApplied">
+    <span class="discountPriceLabel">Discount</span>
+    <span class="cartDiscount" data-currency="{{ shop.money_with_currency_format }}">{{ 0 | money }}</span>
+
+</div>
+<div>
+    <span class="totalLabel">Total</span>
+    <span class="loyalty-cart-total">{{ cart.total_price | money }}</span>
+</div>
+
+<div class="checkout-loyalty-points">
+    <div class="fieldShow hide">
+        <div class="title">Cash in your rewards</div>
+        <div class="rewardField">
+            <span class="label"></span>
+            <input type="number" class="points" name="points" />
+        </div>
+    </div>
+    <div class="loader">
+        {{ 'ajax-loader.gif' | asset_url | img_tag }}
+    </div>
+    <div class="rewardSubmit">
+        <input type="button" class="btn btn--small-wide btn--secondary" onClick="createRedeemPoints()" value="Apply Reward Points"/>
+    </div>
+    <div class="cancelReward">
+        <a href="javascript:void(0)" onclick="deleteDiscountCode()" >Cancel Redeem Points</a>
+    </div>
+</div>
+<script>
+    var page = 'cart';
+
+</script>

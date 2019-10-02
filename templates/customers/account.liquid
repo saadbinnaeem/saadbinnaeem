@@ -1,0 +1,114 @@
+
+<style>
+    #loyPoints-pro {
+        font-size: 13px;
+    }
+    .bonus{
+        font-size: 11px;
+    }
+    #loyPoints-pro .row{
+        display: inline-block;
+        width: 100%;
+    }
+    .th-left{
+        float:left;
+        width: 50%;
+    }
+    .th-right{
+        float:right;
+        width: 50%;
+        text-align: right;
+    }
+    .icon{
+        width:8%;
+        float:left;
+    }
+    .description{
+        width: 72%;
+        float:left;
+    }
+    .points{
+        width: 20%;
+        float:left;
+    }
+    .odometer{
+        position: relative;
+        text-align: center;
+    }
+    .totalPoints{
+        position: absolute;
+        bottom: 35px;
+        left: 0px;
+        text-align: center;
+        letter-spacing: 2pt;
+        width: 100%;
+        padding-left: 30px;
+        font-weight: bold;
+    }
+</style>
+<div class="page-width">
+  <div class="section-header ">
+    <h1>{{ 'customer.account.title' | t }}</h1>
+    {{ 'layout.customer.log_out' | t | customer_logout_link }}
+  </div>
+    <div id="loyaltyProHtml"></div>
+
+  <div class="grid">
+    <div class="grid__item medium-up--two-thirds">
+      <h2>{{ 'customer.orders.title' | t }}</h2>
+
+      {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>Refunded Amount</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+                <th>Request a return</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                <tr>
+                  <td data-label="{{ 'customer.orders.order_number' | t }}">
+                    <a href="{{ order.customer_url }}" class="btn btn--secondary btn--small">{{ order.name }}</a>
+                  </td>
+                  <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                  <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                  <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                  <td data-label="Refunded Amount">{{ order.total_refunded_amount | money }}</td>
+                  <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                  <td data-label="Request a return"><a href="/a/returns?order={{order.order_number}}&email={{customer.email}}"> Request a return </a></td>  
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        {% else %}
+
+          <p>{{ 'customer.orders.none' | t }}</p>
+
+        {% endif %}
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+      {% endpaginate %}
+    </div>
+    <div class="grid__item medium-up--one-third">
+      <h2>{{ 'customer.account.details' | t }}</h2>
+<p><a href="/tools/checkout/front_end/login" class="text-link">Manage Subscription</a></p>
+
+      {{ customer.default_address | format_address }}
+
+      <p><a href="/account/addresses" class="btn btn--small">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+    </div>
+  </div>
+</div>
+<script>
+    page = 'account';
+</script>

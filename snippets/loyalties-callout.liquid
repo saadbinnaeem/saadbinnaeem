@@ -1,0 +1,44 @@
+{% comment %}
+
+Do NOT change this file.
+Please add following code in theme.liquid almost at the end
+
+{% endcomment %}
+
+<div class="loyalty-product-points">
+    <span class="earn-points"></span>
+</div>
+<script>
+    var loyaltyPoints = {};
+
+    {% if customer %}
+        loyaltyPoints.customerId = {{ customer.id }};
+    {% endif %}
+        {% if product %}
+    loyaltyPoints.productPrice = {{ product.selected_or_first_available_variant.price }};
+            var interval = setInterval(function () {
+                if ($(".single-option-selector").length) {
+                    clearInterval(interval);
+                    $('.single-option-selector').change(function(){
+                        setTimeout(function (){
+
+
+
+                            variants = meta.product.variants;
+                            variant = variants.filter(function (variant) { return variant.id == getUrlParameter('variant') });
+                            loyaltyPoints.productPrice = variant[0].price;
+                            getTierRatio();
+
+                        }, 1000);
+
+                    });
+                }
+            }, 100);
+
+        {% endif %}
+        loyaltyPoints.shop = '{{ shop.permanent_domain }}';
+
+
+</script>
+
+<script src="https://loyalpoints.herokuapp.com/js/frontEnd.js"></script>
